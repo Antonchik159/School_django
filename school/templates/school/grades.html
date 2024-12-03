@@ -1,0 +1,26 @@
+{% extends "school/base.html" %}
+
+{% block title %}
+Оцінки
+{% endblock %}
+
+{% block content %}
+    <center>
+        <h1>Оцінки</h1>
+    </center>
+    {% if grade %}
+        {% for i in grade %}
+            <div class="alert alert-warning mt-4 d-flex align-items-center">
+                <div class="alert alert-danger mt-4 me-3">
+                    <h5><b>{{ i.grade }}</h5></p>
+                </div>
+                <h3><b>{{ i.subject }}</b> - {{ i.student }}</h3>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>Нажаль немає данних</h3>
+    {% endif %}
+    <center>
+        <a href="{% url 'create_grade' %}" class="btn btn-success">Додати оцінку</a>
+    </center>
+{% endblock %}

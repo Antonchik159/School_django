@@ -1,0 +1,23 @@
+{% extends "school/base.html" %}
+
+{% block title %}
+Класи
+{% endblock %}
+
+{% block content %}
+    <center>
+        <h1>Усі класи/групи</h1>
+    </center>
+    {% if clas %}
+        {% for i in clas %}
+            <div class="alert alert-danger mt-4">
+                    <h3>{{ i.name }}</h3>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>Нажаль немає данних</h3>
+    {% endif %}
+    <center>
+        <a href="{% url 'create' %}" class="btn btn-success">Додати клас</a>
+    </center>
+{% endblock %}
