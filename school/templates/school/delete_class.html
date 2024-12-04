@@ -6,24 +6,19 @@
 
 {% block content %}
     <center>
-        <h1>Усі класи/групи</h1>
+        <h1>Групи для видалення</h1>
     </center>
     {% if clas %}
         {% for i in clas %}
             <div class="alert alert-danger mt-4">
+                <form method="POST" action="{% url 'delete_class' i.id %}">
+                    {% csrf_token %}
                     <h3>{{ i.name }}</h3>
+                    <button type="submit" class="delete-button">Видалити</button>
+                </form>
             </div>
         {% endfor %}
     {% else %}
         <h3>Нажаль немає данних</h3>
-    {% endif %}
-    <center>
-        <a href="{% url 'create' %}" class="btn btn-success">Додати клас</a>
-    </center>
-
-    {% if clas %}
-    <center>
-        <a href="{% url 'del_class' %}" class="btn btn-danger mt-3">Видалити</a><br>
-    </center>
     {% endif %}
 {% endblock %}

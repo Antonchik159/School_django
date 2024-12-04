@@ -6,24 +6,19 @@
 
 {% block content %}
     <center>
-        <h1>Усі предмети</h1>
+        <h1>Предмети для видалення</h1>
     </center>
-
     {% if subject %}
         {% for i in subject %}
             <div class="alert alert-warning mt-4">
+                <form method="POST" action="{% url 'delete_subject' i.id %}">
+                    {% csrf_token %}
                     <h3>{{ i.name }}</h3>
+                    <button type="submit" class="delete-button">Видалити</button>
+                </form>
             </div>
         {% endfor %}
     {% else %}
         <h3>Нажаль немає данних</h3>
-    {% endif %}
-    <center>
-        <a href="{% url 'create_subject' %}" class="btn btn-success">Додати предмет</a>
-    </center>
-    {% if subject %}
-        <center>
-            <a href="{% url 'del_subject' %}" class="btn btn-danger mt-3">Видалити</a><br>
-        </center>
     {% endif %}
 {% endblock %}

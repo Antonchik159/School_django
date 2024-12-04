@@ -10,7 +10,7 @@ class Subject(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я викладача")
     surname = models.CharField(max_length=100, verbose_name="Прізвище викладача")
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="Предмет який викладає")
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True, verbose_name="Предмет який викладає")
 
     def __str__(self) -> str:
         return f"{self.surname}, {self.name}"
@@ -24,7 +24,7 @@ class Class(models.Model):
 class Student(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я студента")
     surename = models.CharField(max_length=100, verbose_name="Прізвище студента")
-    class_group = models.ForeignKey(Class, on_delete=models.SET_DEFAULT, default=1)
+    class_group = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)
     
     def __str__(self) -> str:
         return f"{self.name}, {self.surename}"
@@ -32,8 +32,8 @@ class Student(models.Model):
 class Shedule(models.Model):
     date_time = models.DateTimeField(verbose_name="Дата та час проведення")
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_DEFAULT, default=1)
-    subject = models.ForeignKey(Subject, on_delete=models.SET_DEFAULT, default=1)
-    class_group = models.ForeignKey(Class, on_delete=models.SET_DEFAULT, default=1)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
+    class_group = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
         return f"{self.date_time} - {self.subject} ({self.class_group})"
@@ -41,7 +41,7 @@ class Shedule(models.Model):
 class Grade(models.Model):
     grade = models.PositiveIntegerField(verbose_name="Оцінка")
     student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)
-    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=1)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
     
     def __str__(self) -> str:
         return f"{self.student} - {self.subject}: {self.grade}"

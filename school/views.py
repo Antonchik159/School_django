@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Subject, Teacher, Class, Student, Shedule, Grade
 from .forms import SubjectForm, TeacherForm, ClassForm, StudentForm, SheduleForm, GradeForm
 
@@ -10,6 +10,10 @@ def subject(request):
     subjects = Subject.objects.all()
     return render(request, 'school/subject.html', {'subject':subjects})
 
+def del_subject(request):
+    subjects = Subject.objects.all()
+    return render(request, 'school/delete_subject.html', {'subject':subjects})
+
 def teacher(request):
     teachers = Teacher.objects.all()
     return render(request, 'school/teacher.html', {'teacher': teachers})
@@ -17,6 +21,10 @@ def teacher(request):
 def clas(request):
     classes = Class.objects.all()
     return render(request, 'school/class.html', {'clas':classes})
+
+def del_clas(request):
+    classes = Class.objects.all()
+    return render(request, 'school/delete_class.html', {'clas':classes})
 
 def student(request):
     students = Student.objects.all()
@@ -100,3 +108,17 @@ def create_grade(request):
     form = GradeForm()
     context = {"form": form}
     return render(request, 'school/create_grade.html', context)
+
+def delete_subject(request, item_id):
+    item = get_object_or_404(Subject, id=item_id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('subjects')
+    return redirect('home')
+
+def delete_class(request, item_id):
+    item = get_object_or_404(Class, id=item_id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('classes')
+    return redirect('home')
