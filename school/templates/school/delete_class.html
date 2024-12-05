@@ -9,15 +9,19 @@
         <h1>Групи для видалення</h1>
     </center>
     {% if clas %}
+    <div class="d-flex flex-wrap gap-3 justify-content-start">
         {% for i in clas %}
-            <div class="alert alert-danger mt-4">
+            <div class="card mb-3 mt-4 p-4 rounded shadow" style="width: 150px;">
                 <form method="POST" action="{% url 'delete_class' i.id %}">
                     {% csrf_token %}
-                    <h3>{{ i.name }}</h3>
-                    <button type="submit" class="delete-button">Видалити</button>
+                    <center>
+                        <h3>{{ i.name }}</h3>
+                        <button type="submit" class="btn" style="background-color: #a52d33; color: white;">Видалити</button>
+                    </center>
                 </form>
             </div>
         {% endfor %}
+    </div>
     {% else %}
         <h3>Нажаль немає данних</h3>
     {% endif %}

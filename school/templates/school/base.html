@@ -7,16 +7,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
+  <style>
+    .my-active {
+    background-color: #fce9ff;
+    color: #ff83be;
+    border-radius: 5px;
+    }
+    .my-nav {
+      color: #ff83be;
+    }
+  </style>
   <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Головна</a></li>
-        <li class="nav-item"><a href="{% url 'teachers' %}" class="nav-link {% if request.path == '/teacher' %}active{% endif %}">Викладачі</a></li>
-        <li class="nav-item"><a href="{% url 'subjects' %}" class="nav-link {% if request.path == '/subject' %}active{% endif %}">Предмети</a></li>
-        <li class="nav-item"><a href="{% url 'classes' %}" class="nav-link {% if request.path == '/clas' %}active{% endif %}">Групи</a></li>
-        <li class="nav-item"><a href="{% url 'students' %}" class="nav-link {% if request.path == '/student' %}active{% endif %}">Студенти</a></li>
-        <li class="nav-item"><a href="{% url 'shedule' %}" class="nav-link {% if request.path == '/shedule' %}active{% endif %}">Розклад</a></li>
-        <li class="nav-item"><a href="{% url 'grades' %}" class="nav-link {% if request.path == '/grades' %}active{% endif %}">Оцінки</a></li>
+        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link my-nav {% if request.path == '/' %}my-active{% endif %}">Головна</a></li>
+        <li class="nav-item"><a href="{% url 'teachers' %}" class="nav-link my-nav {% if request.path == '/teacher' %}my-active{% endif %}">Викладачі</a></li>
+        <li class="nav-item"><a href="{% url 'subjects' %}" class="nav-link my-nav {% if request.path == '/subject' %}my-active{% endif %}">Предмети</a></li>
+        <li class="nav-item"><a href="{% url 'classes' %}" class="nav-link my-nav {% if request.path == '/clas' %}my-active{% endif %}">Групи</a></li>
+        <li class="nav-item"><a href="{% url 'students' %}" class="nav-link my-nav {% if request.path == '/student' %}my-active{% endif %}">Студенти</a></li>
+        <li class="nav-item"><a href="{% url 'shedule' %}" class="nav-link my-nav {% if request.path == '/shedule' %}my-active{% endif %}">Розклад</a></li>
+        <li class="nav-item"><a href="{% url 'grades' %}" class="nav-link my-nav {% if request.path == '/grades' %}my-active{% endif %}">Оцінки</a></li>
       </ul>
     </header>
   </div>

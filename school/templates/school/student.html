@@ -9,16 +9,18 @@
         <h1>Усі учні</h1>
     </center>
     {% if student %}
+    <div class="d-flex flex-wrap gap-3 justify-content-start">
         {% for i in student %}
-            <div class="alert alert-warning mt-4">
-                    <h3>{{ i.name }} {{ i.surename }}</h3>
+            <div class="card mb-3 mt-4 p-4 rounded shadow"style="width: 300px;">
+                    <h3 class="alert-heading">{{ i.name }} {{ i.surename }}</h3>
                     <p>{{ i.class_group }}</p>
             </div>
         {% endfor %}
+    </div>
     {% else %}
         <h3>Нажаль немає данних</h3>
     {% endif %}
     <center>
-        <a href="{% url 'create_student' %}" class="btn btn-success">Додати учня</a>
+        <a href="{% url 'create_student' %}" class="btn" style="background-color: #71a298; color: white;">Додати учня</a>
     </center>
 {% endblock %}

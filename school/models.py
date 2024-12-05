@@ -32,8 +32,8 @@ class Student(models.Model):
 class Shedule(models.Model):
     date_time = models.DateTimeField(verbose_name="Дата та час проведення")
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_DEFAULT, default=1)
-    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
-    class_group = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
+    class_group = models.ForeignKey(Class, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
         return f"{self.date_time} - {self.subject} ({self.class_group})"

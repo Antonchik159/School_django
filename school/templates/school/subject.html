@@ -10,20 +10,22 @@
     </center>
 
     {% if subject %}
+    <div class="d-flex flex-wrap gap-3 justify-content-start">
         {% for i in subject %}
-            <div class="alert alert-warning mt-4">
-                    <h3>{{ i.name }}</h3>
+            <div class="alert mb-3 mt-4 p-4 rounded shadow" style="width: 300px;">
+                    <h3 class="alert-heading">{{ i.name }}</h3>
             </div>
         {% endfor %}
+        </div>
     {% else %}
         <h3>Нажаль немає данних</h3>
     {% endif %}
     <center>
-        <a href="{% url 'create_subject' %}" class="btn btn-success">Додати предмет</a>
+        <a href="{% url 'create_subject' %}" class="btn" style="background-color: #71a298; color: white;">Додати предмет</a>
     </center>
     {% if subject %}
         <center>
-            <a href="{% url 'del_subject' %}" class="btn btn-danger mt-3">Видалити</a><br>
+            <a href="{% url 'del_subject' %}" class="btn mt-3" style="background-color: #a52d33; color: white;">Видалити</a><br>
         </center>
     {% endif %}
 {% endblock %}

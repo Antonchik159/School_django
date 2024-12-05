@@ -26,6 +26,18 @@ def del_clas(request):
     classes = Class.objects.all()
     return render(request, 'school/delete_class.html', {'clas':classes})
 
+def edit_class(request, item_id):
+    item = get_object_or_404(Class, id=item_id)
+    if request.method == 'POST':
+        form = ClassForm(request.POST)
+        if form.is_valid():
+            item.name = form.cleaned_data['name']
+            item.save()
+        return redirect('classes')
+    if request.method == 'GET':
+        form = ClassForm()
+        return render(request, 'school/edit_class.html', {'form': form, 'item': item})
+
 def student(request):
     students = Student.objects.all()
     return render(request, 'school/student.html', {'student': students})
