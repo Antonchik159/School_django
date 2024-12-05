@@ -14,6 +14,7 @@
         {% for i in subject %}
             <div class="alert mb-3 mt-4 p-4 rounded shadow" style="width: 300px;">
                     <h3 class="alert-heading">{{ i.name }}</h3>
+                    <a href="{% url 'edit_subject' i.id %}" class="btn" style="background-color: #eaa9c8;">Змінити</a><br>
             </div>
         {% endfor %}
         </div>

@@ -19,5 +19,7 @@ urlpatterns = [
     path('del_subject', views.del_subject, name='del_subject'),
     path('delete_class/<int:item_id>/', views.delete_class, name='delete_class'),
     path('del_class', views.del_clas, name='del_class'),
-    path('edit_class/<int:item_id>/', views.edit_class, name='edit_class')
+    path('edit_class/<int:item_id>/', views.edit_class, name='edit_class'),
+    path('edit_subject/<int:item_id>/', views.edit_subject, name='edit_subject'),
+    path('show_detclass/<int:item_id>/', views.show_detclass, name='show_detclass')
 ]

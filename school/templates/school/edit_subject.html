@@ -1,0 +1,14 @@
+{% extends "school/base.html" %}
+
+{% block title %}
+Редагувати предмет
+{% endblock %}
+
+{% block content %}
+    <h1>Редагувати клас/групу</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input id="name" type="text" name="name" value="{{ item.name }} " class="form-control"><br>
+        <button type="submit" class="btn" style="background-color: #eaa9c8;">Змінити</button>
+    </form>
+{% endblock %}

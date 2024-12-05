@@ -1,0 +1,26 @@
+{% extends "school/base.html" %}
+
+{% block title %}
+Студенти группи
+{% endblock %}
+
+{% block content %}
+    <center>
+        <h1>Студенти группи</h1>
+    </center>
+    {% if student %}
+    <div class="d-flex flex-wrap gap-3 justify-content-start">
+        {% for i in student %}
+            <div class="alert mb-3 mt-4 p-4 rounded shadow" style="width: 300px;">
+                    <h3 class="alert-heading">{{ i.name }} {{ i.surename }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h3>Нажаль немає данних</h3>
+    {% endif %}
+    <center>
+        <a href="{% url 'home' %}" class="btn" style="background-color: #71a298; color: white;">До головної</a>
+    </center>
+
+{% endblock %}

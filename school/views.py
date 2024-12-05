@@ -14,6 +14,18 @@ def del_subject(request):
     subjects = Subject.objects.all()
     return render(request, 'school/delete_subject.html', {'subject':subjects})
 
+def edit_subject(request, item_id):
+    item = get_object_or_404(Subject, id=item_id)
+    if request.method == 'POST':
+        form = SubjectForm(request.POST)
+        if form.is_valid():
+            item.name = form.cleaned_data['name']
+            item.save()
+        return redirect('subjects')
+    if request.method == 'GET':
+        form = SubjectForm()
+        return render(request, 'school/edit_subject.html', {'form': form, 'item': item})
+
 def teacher(request):
     teachers = Teacher.objects.all()
     return render(request, 'school/teacher.html', {'teacher': teachers})
@@ -134,3 +146,8 @@ def delete_class(request, item_id):
         item.delete()
         return redirect('classes')
     return redirect('home')
+
+def show_detclass(request, item_id):
+    class_instance = Class.objects.get(id=item_id)
+    students = class_instance.get_students()
+    return render(request, 'school/class_detail.html', {'student': students})

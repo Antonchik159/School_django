@@ -18,13 +18,16 @@ class Teacher(models.Model):
 class Class(models.Model):
     name = models.CharField(max_length=100, verbose_name="Назва класу")
 
+    def get_students(self):
+        return self.student_set.all()
+
     def __str__(self) -> str:
         return f"{self.name}"
     
 class Student(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я студента")
     surename = models.CharField(max_length=100, verbose_name="Прізвище студента")
-    class_group = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)
+    class_group = models.ForeignKey(Class, on_delete=models.CASCADE, null=True)
     
     def __str__(self) -> str:
         return f"{self.name}, {self.surename}"
